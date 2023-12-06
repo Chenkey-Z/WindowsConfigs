@@ -12,9 +12,6 @@ Import-Module -Name Terminal-Icons
 Import-Module PSReadLine
 Set-PSReadLineOption -PredictionSource History
 
-# Zlocation
-Import-Module ZLocation
-
 # Emacs mode
 Set-PSReadLineOption -EditMode Emacs
 
@@ -26,8 +23,6 @@ Set-PSReadlineKeyHandler -Key Ctrl+RightArrow -Function NextWord
 Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
 
 # # Autocompletion for arrow keys
-# Set-PSReadlineKeyHandler -Key UpArrow -Function HistorySearchBackward
-# Set-PSReadlineKeyHandler -Key DownArrow -Function HistorySearchForward
 Set-PSReadLineKeyHandler -Key UpArrow -ScriptBlock {
 	[Microsoft.PowerShell.PSConsoleReadLine]::HistorySearchBackward()
 	[Microsoft.PowerShell.PSConsoleReadLine]::EndOfLine()
@@ -37,3 +32,7 @@ Set-PSReadLineKeyHandler -Key DownArrow -ScriptBlock {
 	[Microsoft.PowerShell.PSConsoleReadLine]::EndOfLine()
 }
 
+# Zoxide
+Invoke-Expression (& { (zoxide init powershell | Out-String) })
+Set-Alias -Name z -Value __zoxide_z -Option AllScope -Scope Global -Force
+Set-Alias -Name zi -Value __zoxide_zi -Option AllScope -Scope Global -Force
