@@ -1,9 +1,13 @@
+# UTF8
+$OutputEncoding = [console]::InputEncoding = [console]::OutputEncoding = New-Object System.Text.UTF8Encoding
+
 # Theme
 oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH/night-owl.omp.json" | Invoke-Expression
 
 # Alias
 New-Alias -Name b -Value "busybox" 
 New-Alias -Name python -Value "ipython" 
+New-Alias -Name top -Value "btop" 
 
 # Show file icons
 Import-Module -Name Terminal-Icons
